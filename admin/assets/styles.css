@@ -1,0 +1,364 @@
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.home {
+    padding: 3rem;
+}
+
+.home img {
+    width: 100%;
+}
+
+.sidenav {
+    position: sticky;
+    background-color: #333;
+    font-size: 1.25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    height: 100% !important;
+    float: left;
+    gap: 0.25em;
+    max-width: 15vw;
+}
+
+.nav-item {
+    padding: 10% 15% 10% 15%;
+    color: white;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.nav-item.active{
+    background-color: rgba(0, 0, 0, 0.2);
+}   
+
+.container {
+    padding: 1.5rem;
+    flex-grow: 1;
+    overflow-x: scroll;
+}
+
+.card-container {
+    padding: 1rem;
+    border-radius: 15px;
+    width: 25vw;
+    height: 50vh;
+    position: absolute;
+    margin: auto;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+}
+
+.center form {
+    padding: 0 40px;
+}
+
+form .txt_field {
+    position: relative;
+    margin: 30px 0;
+}
+
+.txt_field input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.txt_field label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+    font-weight: bold;
+}
+
+.txt_field span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+}
+
+.txt_field input:focus~label,
+.txt_field input:valid~label,
+.txt_field input:disabled~label,
+.txt_field input:read-only~label,
+.txt_field input.date-input~label {
+    top: -5px;
+    color: #2691d9;
+}
+
+.txt_field input:focus~span::before,
+.txt_field input:valid~span::before {
+    width: 100%;
+}
+
+.pass {
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+}
+
+.pass:hover {
+    text-decoration: underline;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #333;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.extra-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1em;
+    text-align: center;
+}
+
+.extra-links>a {
+    text-decoration: none;
+    color: black;
+    font-size: small;
+}
+
+
+input[type="submit"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+.txt_field select {
+    padding: .75rem;
+}
+
+table {
+    font-weight: bold;
+    text-align: center;
+}
+
+table th {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: bolder;
+    font-size: larger;
+    padding: 1rem;
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+table tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+tr td {
+    padding: 1rem;
+}
+
+.actions-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.btn {
+    padding: 0.5rem;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: smaller !important;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #0E5E6F;
+}
+
+.btn-delete, .btn-disapprove , .btn-cancel-reservation{
+    background-color: #DC3535;
+}
+
+.btn-view, .btn-approve, .btn-done {
+    background-color: #285430;
+}
+
+.btn-cancel{
+    /* background-color: #DC3535; */
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.search-box {
+    display: flex;
+    margin: 0 0 2rem;
+    justify-content: right;
+    width: 100%;
+    align-items: center;
+    position: relative;
+}
+
+.search-box label {
+    font-weight: bold;
+    font-size: larger;
+    margin-right: .5rem;
+}
+
+.search-box input {
+    padding: .6rem;
+    height: 100%;
+    border: 1px 0 1px 0;
+    outline: none;
+    height: 100%;
+    width: 30%;
+}
+
+.btn-search {
+    color: black;
+    padding: 0.75rem;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 0 10px 10px 0;
+}
+
+.btn-add, .btn-filter {
+    color: white;
+    background-color: #344D67;
+    font-size: larger;
+    margin: 1rem 0 1rem 0;
+}
+
+.nav-toggle {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px black solid;
+}
+
+.form-modal, .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    border-radius: 10px;
+    border: none;
+    width: 50%;
+}
+
+.form-modal::backdrop, .modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-row{
+    display: flex;
+    gap:0.25rem;
+}
+
+.form-row>*{
+    flex:1;
+}
+
+.form-header{
+    position: relative;
+}
+
+.form-header::after{
+    /* content: "x"; */
+    position: absolute;
+    right: -25px;
+    top: -25px;
+    border-radius: 100%;
+    padding: 1.2rem 1.8rem 1.2rem 1.8rem
+}
+
+.form-header::after:hover{
+    padding: 1.2rem 1.8rem 1.2rem 1.8rem;
+
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.date-input label{
+    top: -5px;
+}
+
+.select-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.select-form select{
+    width: 100%;
+}

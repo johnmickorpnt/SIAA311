@@ -1,0 +1,197 @@
+body {
+    position: relative;
+}
+
+.reserved {
+    fill: grey;
+}
+
+.reserved svg {
+    opacity: .5;
+}
+
+.reserved span {
+    color: black !important;
+}
+
+.available {
+    fill: white;
+}
+
+.tbl-wrapper.available:hover {
+    fill: #7D8F69 !important;
+    cursor: pointer;
+}
+
+.tbl-wrapper.available:hover span {
+    visibility: visible;
+}
+
+.tbl-wrapper.reserved:hover span {
+    visibility: visible;
+}
+
+.test {
+    fill: light !important;
+}
+
+.chair {
+    fill: #808285;
+}
+
+.sm-tbl {
+    width: 100% !important;
+}
+
+.tbl-wrapper {
+    display: flex;
+    justify-content: right;
+    position: relative;
+}
+
+.tbl-wrapper>span {
+    position: absolute;
+    font-size: small;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    visibility: hidden;
+    color: white;
+    text-transform: uppercase;
+}
+
+.tbl-group-side>.sm-tbl {
+    width: 50% !important;
+    height: 50% !important;
+}
+
+.tbl-group-side>.tbl-wrapper>span {
+    font-size: 0.8rem !important;
+}
+
+
+.inline-form-group {
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+}
+
+.inline-form-group>input {
+    width: 50%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+.important-marker {
+    color: red;
+}
+
+#main-container {
+    margin: auto;
+    padding: 1.25rem;
+}
+
+#main-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1.25fr;
+    grid-gap: 0;
+    width: 60%;
+    margin: auto;
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+}
+
+#loading-modal>svg {
+    width: 50%;
+    height: 50%;
+}
+
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#msg-modal>span {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 1.5rem;
+    top: 5%;
+    border-radius: 20px;
+    height: 2.75rem;
+    width: 2.5rem;
+    padding: 0.25rem;
+    color: black;
+    font-weight: bold;
+    text-transform: lowercase;
+    font-size: large;
+}
+
+#msg-modal>span:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    cursor: pointer;
+}
+
+
+.btn-group {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.btn {
+    padding: 0.75rem 1.4rem 0.75rem 1.4rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #eed;
+    outline: none;
+    box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn.confirm {
+    background-color: #2596be;
+    color: wheat;
+}
+
+.btn.cancel{
+    background-color: red;
+    color: wheat;
+}
+
+#conf-msg {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
