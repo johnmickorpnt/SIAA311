@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2022 at 04:24 AM
+-- Generation Time: Mar 06, 2023 at 11:10 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -99,7 +99,26 @@ INSERT INTO `dishes` (`id`, `name`, `category`, `price`, `description`, `image`,
 (11, 'PRAWNS THERMIDOR ', 6, 390, 'In NY A popular meal called \'Prawns Thermidor\' features soft prawn pieces cooked with carrot, celery, button mushrooms, and a creamy mustard sauce.', 'assets/imgs/prawn-thermidor.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
 (12, 'Pumpkin Soup ', 2, 160, 'it is made with a foundation of savory vegetable broth and sweet cream (Tomato Soup)  and is loaded with a variety of tomatoes, garlic, and NY-originated spices. (Garlic bread)', 'assets/imgs/pumpkin-soup.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
 (13, 'BAKED MUSSELS ', 2, 270, 'a Tasty New York recipe for baked mussels with oozing cheese and garlic-bechamel sauce', 'assets/imgs/baked-mussel.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(14, 'NACHOS SUPREME ', 2, 260, 'A typical appetizer of tortilla chips with melted cheese and sliced chile peppers is called \"Bringing Mexico to NY into the Philippines.\"', 'assets/imgs/nachos-supreme.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17');
+(14, 'NACHOS SUPREME ', 2, 260, 'A typical appetizer of tortilla chips with melted cheese and sliced chile peppers is called \"Bringing Mexico to NY into the Philippines.\"', 'assets/imgs/nachos-supreme.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(15, 'Lasagna Pasta', 3, 233, 'Yes. Very yummy', 'assets/imgs/thump_1678078888.jpeg', '2023-03-06 13:01:28', '2023-03-06 13:01:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `account_number` varchar(255) NOT NULL DEFAULT current_timestamp(),
+  `amount` varchar(255) NOT NULL DEFAULT current_timestamp(),
+  `bank` varchar(255) NOT NULL,
+  `branch` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `receipt` varchar(255) NOT NULL,
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -134,6 +153,17 @@ CREATE TABLE `reservations` (
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `date`, `startTime`, `endTime`, `user`, `tableId`, `status`, `created_at`, `updated_at`) VALUES
+(24, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 1, '0', '2023-03-06 13:20:01', '2023-03-06 13:20:01'),
+(25, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 2, '0', '2023-03-06 13:20:11', '2023-03-06 13:20:11'),
+(26, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 3, '0', '2023-03-06 13:21:27', '2023-03-06 13:21:27'),
+(27, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 4, '0', '2023-03-06 13:21:45', '2023-03-06 13:21:45'),
+(28, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 5, '0', '2023-03-06 14:04:38', '2023-03-06 14:04:38');
 
 -- --------------------------------------------------------
 
@@ -183,6 +213,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `number`, `created_at`, `updated_at`) VALUES
+(1, 'JOhn Micko', 'Rapanot', 'johnmickooo28@gmail.com', '$2y$10$Q1.TkZqz9aXw1sY7uqLEDuIkByNVb1tqbd0pidALsgu2N.13PW02e', '09194282431', '2023-03-03 15:54:20', '2023-03-03 15:54:20');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -198,6 +235,12 @@ ALTER TABLE `dish-category`
 ALTER TABLE `dishes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category` (`category`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pre_ordered`
@@ -242,7 +285,13 @@ ALTER TABLE `dish-category`
 -- AUTO_INCREMENT for table `dishes`
 --
 ALTER TABLE `dishes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pre_ordered`
@@ -254,7 +303,7 @@ ALTER TABLE `pre_ordered`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tables`
@@ -266,7 +315,7 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

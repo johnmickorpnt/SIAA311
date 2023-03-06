@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");	
+if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,7 @@ if(!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
     <?php
     include("components/links.php");
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Hub'z Bistro Reservation</title>
@@ -42,13 +43,13 @@ if(!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
     </main>
 
     <dialog class="modal" id="loading-modal">
-        <object data="<?php echo assets('/assets/svgs/loading.svg');?>" height="50%"></object>
+        <object data="<?php echo assets('/assets/svgs/loading.svg'); ?>" height="50%"></object>
         <h1>Loading...</h1>
     </dialog>
 
     <dialog class="modal" id="msg-modal">
-        <span class="close-modal">x</span>
-        <img src="<?php echo assets('assets/gifs/done.gif')?>" height="50%" width="60%" alt="Booking Successful.">
+        <span class="close-modal" onclick="closeMsg();">x</span>
+        <img src="<?php echo assets('assets/gifs/done.gif') ?>" height="50%" width="60%" alt="Booking Successful.">
         <h3 id="msg">
         </h3>
     </dialog>
@@ -78,5 +79,4 @@ if(!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
     <script src="assets/js/reservation.js"></script>
     <script src="assets/js/global.js"></script>
 </body>
-
 </html>

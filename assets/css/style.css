@@ -26,18 +26,21 @@ nav {
   background-color: #333;
   gap: 1em;
   height: 100%;
-  padding: 0;
+  padding-left: 5rem;
+  padding-right: 5rem;
   z-index: 999 !important;
 }
 
-.topnav a:nth-child(2), .topnav div:nth-child(2){
+.topnav a:nth-child(2), .topnav div:nth-child(2) {
   margin-left: auto !important;
 }
 
 .topnav a {
   color: #f2f2f2;
   text-decoration: none;
-  font-size: large;
+  font-size: small;
+  text-transform: uppercase;
+  font-weight: 600;
   /* width: 100%;
   text-align: center;
   display: flex;
@@ -80,7 +83,7 @@ nav {
 }
 
 .topnav .nav-item:hover {
-  background-color: #bbb;
+  background-color: rgba(0,0,0,.5);
   cursor: pointer;
 }
 
@@ -277,7 +280,7 @@ footer {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   top: 3rem;
-  left: -1rem;
+  left: -1.5rem;
 }
 
 
@@ -891,7 +894,7 @@ a {
   background-color: white !important;
 }
 
-.catalouge-item:last-child h2{
+.catalouge-item:last-child h2 {
   color: black;
   text-shadow: none;
 }
@@ -1225,14 +1228,14 @@ a.menu-grid-item {
 }
 
 
-
 .dish-container {
-  padding: 1rem;
+  padding: 3rem;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 9rem;
-  gap: 2rem
+  margin-top: 3rem;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .dish-container div:first-child {
@@ -1242,7 +1245,9 @@ a.menu-grid-item {
 
 .dish-container img {
   width: 100%;
-  height: 30rem;
+  height: 23rem;
+  border-radius: 15px;
+  margin-top: 1rem;
 }
 
 .dish-info {
@@ -1253,9 +1258,10 @@ a.menu-grid-item {
 }
 
 .dish-info p {
-  font-size: larger;
+  font-size: large;
   font-weight: bold;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 1rem 2rem 1rem 0;
+  text-align: justify;
 }
 
 
@@ -1276,10 +1282,18 @@ a.menu-grid-item {
 
 .dish-title {
   font-family: 'Ubuntu', sans-serif;
-  font-size: xx-large;
-  text-align: center;
+  font-size: large;
+  text-align: left;
+  text-transform: uppercase;
   font-weight: bolder;
 }
+
+.dish-img{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
 
 #success-modal {
   font-weight: bold;
@@ -1292,17 +1306,17 @@ a.menu-grid-item {
   gap: 0.5rem;
 }
 
-table{
+table {
   padding: 0.5rem;
   width: 100%;
 }
 
-tr, td{
+tr, td {
   padding: 1rem;
   text-align: center;
 }
 
-thead, th{
+thead, th {
   border-bottom: 1px black solid;
   padding: 1rem;
 }
@@ -1316,7 +1330,7 @@ table tr:hover {
 }
 
 
-.btn-cancel{
+.btn-cancel {
   padding: 0.5rem;
   background-color: #2691d9;
   color: white;
@@ -1324,13 +1338,74 @@ table tr:hover {
   border: none;
 }
 
-.btn-cancel:hover, .btn-remove:hover{
+.btn-cancel:hover, .btn-remove:hover {
   cursor: pointer;
 }
 
-.btn-remove{
+.btn-remove {
   border: none;
   background-color: transparent;
   color: black;
   padding: 1rem;
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none;
+  /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div, .select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
 }

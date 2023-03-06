@@ -12,7 +12,7 @@ $homeLink = route("index.php");
     <div class="topnav">
         <div class="logo">
             <a href="<?php echo $homeLink; ?>">
-                <img src="<?php echo assets("assets/imgs/logo.png"); ?>" height="50" width="200">
+                <img src="<?php echo assets("assets/imgs/logo.png"); ?>" height="45rem" width="200rem">
             </a>
         </div>
         <?php
@@ -44,9 +44,11 @@ $homeLink = route("index.php");
                         <a href="$logout">Logout</a>
                     </div>
                 </div>
-                <a class="nav-item" href="{$reserveLink}">
-                    Book a Reservation
-                </a>
+                <div class="nav-item">
+                    <a  href="{$reserveLink}">
+                        Book a Reservation
+                    </a>
+                </div>
                 ACCOUNT;
         ?>
 

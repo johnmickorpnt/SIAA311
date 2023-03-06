@@ -7,7 +7,7 @@ include("functions/menu.php");
 include("functions/user.php");
 $dish = json_decode(get_menu_item($id));
 
-if(isset($_SESSION["user"]))
+if (isset($_SESSION["user"]))
     $appointments = json_decode(get_reservations($_SESSION["user"], 1));
 ?>
 <!DOCTYPE html>
@@ -34,13 +34,16 @@ if(isset($_SESSION["user"]))
     <main class="container">
         <section class="dish-container">
             <div class="dish-img">
+                <h1 style="font-family: 'Ubuntu', sans-serif; grid-column: 1 / -1; font-weight:bold; text-transform:uppercase; font-size:xx-large">
+                    <?php
+                    echo $dish->name;
+                    ?>
+                </h1>
                 <img src="<?php echo assets($dish->image) ?>" alt="<?php echo $dish->image; ?>">
             </div>
             <div class="dish-info">
                 <h1 class="dish-title">
-                    <?php
-                    echo $dish->name;
-                    ?>
+                    Description
                 </h1>
                 <p style="margin-bottom: auto;">
                     <?php
@@ -89,12 +92,12 @@ if(isset($_SESSION["user"]))
     </main>
     <section>
         <?php
-        if(isset($_SESSION["order-msg"]))
+        if (isset($_SESSION["order-msg"]))
             // var_dump($_SESSION["order-msg"]);
             echo <<<CONTENT
             <script>alert("{$_SESSION["order-msg"][0]}")</script>
             CONTENT;
-            unset($_SESSION["order-msg"]);
+        unset($_SESSION["order-msg"]);
         ?>
     </section>
     <?php

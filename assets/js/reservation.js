@@ -79,7 +79,7 @@ function queryTables(data) {
  * @param  {int} id
  */
 function confirmation(id, date, time) {
-    console.log(id);
+    // console.log(id);
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     confModal.querySelector("#id-span").innerHTML = id;
     confModal.querySelector("#date-span").innerHTML = new Date(date).toLocaleDateString("en-US", options);
@@ -99,7 +99,20 @@ function reserve() {
             const response = JSON.parse(this.responseText);
             loadData();
             confModal.close();
-            showMsg(response["msg"]);
+            let heading = response["msg"].substring(0, response["msg"].indexOf("."));
+            let subHeading = response["msg"].substring(response["msg"].indexOf(".") + 1,
+                response["msg"].length)
+            console.log(subHeading);
+            Swal.fire({
+                title: heading,
+                html: `<b>${subHeading}</b><br>, ` +
+                    `While waiting for our approval, You can add dishes to your reservation! by <a href="menu-categories.php"><b>clicking here</b></a>`,
+                showCloseButton: true,
+                focusConfirm: false,
+                closeButtonText:
+                    '<a href="menu-categories.php" style="color:white">Close</a>',
+                confirmButtonAriaLabel: 'Browse the menu',
+            })
         }
     };
     xhttp.open("POST", "apis/reserve.php");

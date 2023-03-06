@@ -63,15 +63,14 @@ $reservations = json_decode(get_reservations($_SESSION["user"], null));
                                 <button class="btn-cancel" data-id="$val->id" data-table="pre_ordered">
                                     Cancel
                                 </button>
-                                <button class="btn-cancel" data-id="$val->id" data-table="pre_ordered">
+                                <a href="payment.php">
                                     Proceed to payment
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         CONTENT;
                     } else echo "<td> None </td> </tr>";
                 }
-
                 ?>
             </tbody>
         </table>
