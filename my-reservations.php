@@ -63,7 +63,7 @@ $reservations = json_decode(get_reservations($_SESSION["user"], null));
                                 <button class="btn-cancel" data-id="$val->id" data-table="pre_ordered">
                                     Cancel
                                 </button>
-                                <a href="payment.php">
+                                <a href="payment.php?id=$val->id">
                                     Proceed to payment
                                 </a>
                             </td>

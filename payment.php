@@ -43,13 +43,13 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
                         <i class="fa-solid fa-circle-xmark" style="font-size: large;"></i>
                         Please do not hand over cash to any individuals including our staffs.
                     </li>
-
                 </ul>
             </div>
             <form action="" enctype="multipart/form-data" id="reserveForm">
+                <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                 <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:0.5rem; margin:0.5rem; align-items:center; padding:1rem">
                     <div class="custom-select" style="width:100%">
-                        <select>
+                        <select id="bank" name="bank">
                             <option value="0">Select Bank:</option>
                             <option value="1">Mlhuillier Financial Services Inc.</option>
                             <option value="2">Palawan Express</option>
@@ -66,23 +66,23 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
                         </select>
                     </div>
                     <div class="txt_field">
-                        <input type="text" placeholder="Account Number">
+                        <input type="text" placeholder="Account Number" id="account_number" name="account_number" min="10" max="10">
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="number" placeholder="Amount">
+                        <input type="number" placeholder="Amount" id="amount" name="amount">
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="date" class="form-input" id="date" name="date" min="<?= date('Y-m-d', strtotime("+1 day")); ?>">
+                        <input type="date" id="date" name="date" class="form-input" id="date" name="date" min="<?= date('Y-m-d', strtotime("+1 day")); ?>">
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="text" placeholder="Deposited Branch">
+                        <input type="text" placeholder="Deposited Branch" id="deposited_branch" name="deposited_branch">
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="file" name="" id="">
+                        <input type="file" name="screenshot" id="screenshot">
                         <span></span>
                     </div>
                 </div>

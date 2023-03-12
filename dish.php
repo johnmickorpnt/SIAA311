@@ -33,17 +33,17 @@ if (isset($_SESSION["user"]))
     ?>
     <main class="container">
         <section class="dish-container">
+            <h1 style="font-family: 'Ubuntu', sans-serif; grid-column: 1 / -1; font-weight:bold; text-transform:uppercase; font-size:xxx-large">
+                <?php
+                echo $dish->name;
+                ?>
+            </h1>
             <div class="dish-img">
-                <h1 style="font-family: 'Ubuntu', sans-serif; grid-column: 1 / -1; font-weight:bold; text-transform:uppercase; font-size:xx-large">
-                    <?php
-                    echo $dish->name;
-                    ?>
-                </h1>
                 <img src="<?php echo assets($dish->image) ?>" alt="<?php echo $dish->image; ?>">
             </div>
             <div class="dish-info">
                 <h1 class="dish-title">
-                    Description
+                    What makes the dish special?
                 </h1>
                 <p style="margin-bottom: auto;">
                     <?php
@@ -78,7 +78,7 @@ if (isset($_SESSION["user"]))
                                 </div>
                             </div>
                             <input class="btn" type="submit" value="Add to my table" id="add">
-                            <input class="btn dark" type="submit" value="Remove to my table" id="remove">
+                            
                         </form>
                         CONTENT;
                 } else {
@@ -88,6 +88,7 @@ if (isset($_SESSION["user"]))
                 }
                 ?>
             </div>
+            <!-- <input class="btn dark" type="submit" value="Remove to my table" id="remove"> -->
         </section>
     </main>
     <section>
