@@ -92,19 +92,23 @@
 					}
 					case 422: {
 						var registerErrors = document.getElementById("register-errors");
-						registerErrors.innerText = "";
-						for (let x of response) {
-							if (typeof x !== "object") {
-								var list = document.createElement("li");
-								list.innerHTML = x;
-								list.classList.add("invalid");
-								registerErrors.append(list);
+						sleep(800, () => {
+							loading.close();
+							registerErrors.innerText = "";
+							for (let x of response) {
+								if (typeof x !== "object") {
+									var list = document.createElement("li");
+									list.innerHTML = x;
+									list.classList.add("invalid");
+									registerErrors.append(list);
+								}
 							}
-						}
-						const invalids = document.querySelectorAll(".invalid");
-						invalids.forEach(item => {
-							item.addEventListener("click", () => item.remove());
+							const invalids = document.querySelectorAll(".invalid");
+							invalids.forEach(item => {
+								item.addEventListener("click", () => item.remove());
+							});
 						});
+
 						break;
 					}
 					case 404: {

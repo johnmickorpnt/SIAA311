@@ -87,8 +87,8 @@ if (isset($_POST['email'])) {
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";
 			$mail->SMTPAuth = true;
-			$mail->Username = 'hubzbistro.dummy@gmail.com';
-			$mail->Password = 'puzvjtcvzffxkolt';
+			$mail->Username = 'jacobmartindummy@gmail.com';
+			$mail->Password = 'idcrrkgigtumrgut';
 			$mail->Port = 587;
 
 			$mail->setFrom('hubzbistro.dummy@gmail.com');
