@@ -83,7 +83,7 @@ nav {
 }
 
 .topnav .nav-item:hover {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0, 0, 0, .5);
   cursor: pointer;
 }
 
@@ -366,10 +366,12 @@ form .txt_field {
   color: #2691d9;
 }
 
-.txt_field input:focus~span::before,
+.txt_field input:focus~span::before, input:read-only~span::before,
 .txt_field input:valid~span::before {
   width: 100%;
 }
+
+
 
 .pass {
   margin: -5px 0 20px 5px;
@@ -1007,17 +1009,18 @@ a.menu-grid-item {
   cursor: pointer;
 }
 
-.menu-grid-item .price {
+.menu-grid-item .price, .mini-pre-ordered .price {
   font-weight: bolder;
   font-family: 'Ubuntu', sans-serif;
   font-size: large;
+  white-space: nowrap;
 }
 
-.menu-grid-item .price::before {
+.menu-grid-item .price::before, #menu-items .price::before {
   content: "₱";
 }
 
-.menu-grid-item .price::after {
+.menu-grid-item .price::after, #menu-items .price::after {
   content: ".00";
 }
 
@@ -1288,7 +1291,7 @@ a.menu-grid-item {
   font-weight: bolder;
 }
 
-.dish-img{
+.dish-img {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
@@ -1408,4 +1411,76 @@ table tr:hover {
 
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+#menu-items {
+  overflow: hidden;
+  background: transparent;
+  height: 90vh;
+  width: 90vw;
+}
+
+.mini-menu-content {
+  overflow: scroll;
+}
+
+.pre-order-wrapper {
+  overflow: scroll;
+}
+
+.pre-ordered-row {
+  display: grid;
+  grid-template-columns: 0.1fr 1.5fr 1fr 0.75fr;
+  align-items: center;
+  padding: 1rem;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: 2fr minmax(1rem, auto) 1fr;
+  gap:.25rem;
+  width: 100%;
+  font-size: larger;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.summary-row .name {
+  text-transform: capitalize;
+}
+
+#summary-tab {
+  background: white;
+  padding: 1rem;
+  border-radius: 15px;
+  min-height: 50%;
+  max-height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #b8b8b8;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
 }

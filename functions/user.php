@@ -31,10 +31,19 @@ function get_reservations($email, $status)
         array_push($data, $row);
     }
 
+    foreach ($data as $row) {
+        $startTime = date("H:i a", strtotime($row['startTime']));
+        $dateToCompare = date('Y-m-d H:i:s', strtotime("{$row['date']} {$startTime}"));
+        if (!is_valid($dateToCompare) && $row["status"] != 3) {
+            cancel_reservation($row["id"]);
+            header("Refresh:0");
+        }
+    }
+
     return json_encode($data);
 }
 // CHANGE INSERT TO UPDATE
-function quantify_order($userId, $dishId, $quantity, $reservationId)
+function quantify_order($userId, $dishId, $quantity)
 {
     global $db;
     $_SESSION["order-msg"] = array();
@@ -46,19 +55,20 @@ function quantify_order($userId, $dishId, $quantity, $reservationId)
     $newQty =  $row["quantity"] + $quantity;
 
     $insertSql = "UPDATE `pre_ordered` SET quantity = $newQty
-					WHERE userId = '$userId' AND reservationId = '$reservationId';";
+					WHERE userId = '$userId'
+                    AND dishId = '$dishId';";
     $result = mysqli_query($db, $insertSql);
 
     array_push($_SESSION["order-msg"], $result ? "Added quantity to order." : "Pre-order Failed. Please reload the page and try again.");
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
-function create_order($userId, $dishId, $quantity, $reservationId)
+function create_order($userId, $dishId, $quantity)
 {
     global $db;
     $_SESSION["order-msg"] = array();
-    $insertSql = "INSERT INTO `pre_ordered` (userId, dishId, reservationId, quantity) 
-					VALUES ('$userId','$dishId','$reservationId', '$quantity')";
+    $insertSql = "INSERT INTO `pre_ordered` (userId, dishId, quantity) 
+					VALUES ('$userId','$dishId', '$quantity')";
 
     $result = mysqli_query($db, $insertSql);
 
@@ -74,15 +84,12 @@ function get_pre_orders($user)
     $sql = "SELECT 
     pre_ordered.id,
     pre_ordered.quantity,
+    pre_ordered.isActive,
     dishes.name,
     dishes.image,
-    reservations.id as 'reservationId',
-    reservations.date,
-    reservations.startTime,
-    reservations.endTime
+    dishes.price
     FROM pre_ordered 
     INNER JOIN dishes ON pre_ordered.dishId = dishes.id 
-    INNER JOIN reservations ON pre_ordered.reservationId = reservations.id 
     WHERE userId = {$id};";
     $result = mysqli_query($db, $sql);
     $data = array();
@@ -123,4 +130,65 @@ function remove_order($id)
     WHERE ID = {$id}";
     $result = mysqli_query($db, $sql);
     return $result;
+}
+
+function updateActive($preOrderId, $userId, $val)
+{
+    global $db;
+    $_SESSION["order-msg"] = array();
+    $sql = "SELECT * FROM `pre_ordered` WHERE id = '{$preOrderId}' AND userId = '{$userId}';";
+    $result = mysqli_query($db, $sql);
+
+    $insertSql = "UPDATE `pre_ordered` SET isActive = $val
+					WHERE id = '$preOrderId'
+                    AND userId = '$userId';";
+    $result = mysqli_query($db, $insertSql);
+    return $result;
+}
+
+function get_total_payment($userId)
+{
+    global $db;
+    $_SESSION["order-msg"] = array();
+    $sql = "SELECT 
+    pre_ordered.id,
+    pre_ordered.quantity,
+    pre_ordered.isActive,
+    dishes.name,
+    dishes.image,
+    dishes.price
+    FROM pre_ordered 
+    INNER JOIN dishes ON pre_ordered.dishId = dishes.id 
+    WHERE userId = {$userId};";
+    $result = mysqli_query($db, $sql);
+
+    $toBePayed = 0;
+    while (($row = mysqli_fetch_assoc($result))) {
+        $toBePayed += $row["isActive"] ? ($row["price"] * $row["quantity"]) / 2 : 0;
+    }
+    return $toBePayed;
+}
+
+function is_valid($dateTime)
+{
+    $tz = new DateTimeZone('Asia/Manila');
+    $now = date('Y-m-d H:i:s');
+    $diff = strtotime($now) - strtotime($dateTime);
+    if ((int) number_format($diff / (60 * 60), 0) >= 12) return false;
+    else return true;
+}
+
+
+function create_payment($id, $bank, $accountNumber, $amount, $date, $depositedBranch, $receipt)
+{
+    global $db;
+
+
+    $insertSql =  "INSERT INTO `payments` (`id`, `reservationId`, `account_number`, `amount`, `bank`, `branch`, `date`, `receipt`, `created_at`, `updated_at`) 
+    VALUES (NULL, '{$id}', '{$accountNumber}', '{$amount}', '{$bank}', '{$date}', '{$depositedBranch}', '{$receipt}', current_timestamp(), current_timestamp())";
+    $result = mysqli_query($db, $insertSql);
+    
+    array_push($_SESSION["order-msg"], $result ? "Payment success" : "Pre-order Failed. Please reload the page and try again.");
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    
 }

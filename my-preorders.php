@@ -2,7 +2,6 @@
 session_start();
 
 include("functions/user.php");
-$reservations = json_decode(get_reservations($_SESSION["user"], null));
 $preOrders = json_decode(get_pre_orders($_SESSION["user"]));
 ?>
 <!DOCTYPE html>
@@ -30,15 +29,14 @@ $preOrders = json_decode(get_pre_orders($_SESSION["user"]));
             <thead>
                 <th>Name</th>
                 <th>Quantity</th>
-                <th>For Reservation Date</th>
+                <th>Action</th>
                 <th></th>
             </thead>
             <tbody>
                 <?php
                 if (isset($preOrders)) {
                     foreach ($preOrders as $key => $val) {
-                        $date = date("M d y (l)", strtotime($val->date));
-                        $startTime = date("H:i a", strtotime($val->startTime));
+
                         echo <<<CONTENT
                     <tr>
                         <td style="display:flex; flex-direction:column; align-items:center">
@@ -47,10 +45,6 @@ $preOrders = json_decode(get_pre_orders($_SESSION["user"]));
                         </td>
                         <td>
                             {$val->quantity} Order/s
-                        </td>
-                        <td>
-                            {$date}
-                            <br>@ {$startTime}
                         </td>
                         <td>
                             <button class="btn-remove" data-id="$val->id" data-table="pre_ordered">
@@ -80,24 +74,35 @@ $preOrders = json_decode(get_pre_orders($_SESSION["user"]));
         let cancelBtn = document.querySelectorAll(".btn-remove");
         cancelBtn.forEach(btn => {
             btn.addEventListener("click", () => {
-                let conf = confirm("Remove this pre-order?");
-                if (!conf) return false;
-
+                let conf = false;
                 let id = btn.getAttribute("data-id");
                 let tbl = btn.getAttribute("data-table");
                 let fd = new FormData();
-                fd.append("id", id);
-                fd.append("table", tbl);
-                fetch("apis/remove-order.php", {
-                        method: "POST",
-                        body: fd
-                    })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        alert(response.status ? response.msg : response.errors);
-                        if (response.status)
-                            window.location.reload();
-                    })
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You can still add this dish later in the menu.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, remove it'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        fd.append("id", id);
+                        fd.append("table", tbl);
+                        fetch("apis/remove-order.php", {
+                                method: "POST",
+                                body: fd
+                            })
+                            .then((response) => response.json())
+                            .then((response) => {
+                                Swal.fire('Saved!', '', 'success').then(() => window.location.reload())
+                                // alert(response.status ? response.msg : response.errors);
+                                // if (response.status)
+                            })
+                    }
+                })
+
             })
         });
     </script>

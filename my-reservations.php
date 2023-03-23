@@ -42,6 +42,7 @@ $reservations = json_decode(get_reservations($_SESSION["user"], null));
                     $startTime = date("H:i a", strtotime($val->startTime));
                     $endTime = date("H:i a", strtotime($val->endTime));
                     $status = $val->status == "0" ? "Waiting for approval" : ($val->status == "1" ? "Approved" : ($val->status == "3" ? "Cancelled" : "Absent"));
+                    $dateToCompare = date('Y-m-d H:i:s', strtotime("{$val->date} {$startTime}"));
                     echo <<<CONTENT
                     <tr>
                         <td>
@@ -82,24 +83,32 @@ $reservations = json_decode(get_reservations($_SESSION["user"], null));
         let cancelBtn = document.querySelectorAll(".btn-cancel");
         cancelBtn.forEach(btn => {
             btn.addEventListener("click", () => {
-                let conf = confirm("Cancel this reservation?");
-                if (!conf) return false;
 
                 let id = btn.getAttribute("data-id");
                 let tbl = btn.getAttribute("data-table");
                 let fd = new FormData();
-                fd.append("id", id);
-                fd.append("table", tbl);
-                fetch("apis/cancel.php", {
-                        method: "POST",
-                        body: fd
-                    })
-                    .then((response) => response.json())
-                    .then((response) => {
-                        alert(response.status ? response.msg : response.errors);
-                        if (response.status)
-                            window.location.reload();
-                    })
+                Swal.fire({
+                    title: 'Are you sure you want to cancel this reservation?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                    confirmButtonColor: 'red',
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        fd.append("id", id);
+                        fd.append("table", tbl);
+                        fetch("apis/cancel.php", {
+                                method: "POST",
+                                body: fd
+                            })
+                            .then((response) => response.json())
+                            .then((response) => {
+                                Swal.fire('Saved!', '', 'success')
+                                window.location.reload();
+                            })
+                    }
+                })
             })
         });
     </script>

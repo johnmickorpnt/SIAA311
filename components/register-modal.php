@@ -85,8 +85,22 @@
 						successModal.showModal();
 						successModal.querySelector("#success-msg").innerHTML = response["response"] + "<br>Please wait while we redirect you...";
 						sleep(800, () => {
-							window.location.href = "#login";
-							window.location.reload();
+							successModal.close();
+							const Toast = Swal.mixin({
+								toast: true,
+								position: 'bottom-end',
+								showConfirmButton: false,
+								timer: 3000,
+								timerProgressBar: true,
+								didOpen: (toast) => {
+									toast.addEventListener('mouseenter', Swal.stopTimer)
+									toast.addEventListener('mouseleave', Swal.resumeTimer)
+								}
+							})
+							Toast.fire({
+								icon: 'success',
+								title: 'Created an account successfully.'
+							})
 						});
 						break;
 					}

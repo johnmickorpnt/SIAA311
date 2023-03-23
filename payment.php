@@ -1,6 +1,9 @@
 <?php
+include("apis/pre-orders.php");
 session_start();
 if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
+$orders = json_decode(get_orders(), true);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +26,108 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
     <?php
     include("components/navbar.php");
     ?>
+    <dialog id="menu-items" class="modal">
+        <span class="close-modal" id="close-menu-modal" style="top:2rem;right:2rem">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+        <section style="display: grid;grid-template-columns: 2fr 1fr; background: transparent;gap:1rem; height:100%; position:relative">
+            <section class="card-content" style="width:100%; background:white;overflow:scroll;">
+                <b>Selected Items</b>
+                <div class="mini-menu-content">
+                    <div class="pre-order-wrapper" id="pre-order-wrapper">
+                        <?php
+                        $grandTotal = 0;
+                        if (!$orders["status"]) {
+                            echo "Please make sure you have selected a dish for your reservation.";
+                            return false;
+                        } else {
+                            foreach ($orders["body"] as $index => $order) {
+                                $newTotal = (int)$order["price"] * (int)$order["quantity"];
+                                $checked = $order["isActive"] ? "checked" : "";
+                                echo <<<ROW
+                                    <div class="pre-ordered-row">
+                                        <div style="height:100%; display:flex; align-items:center; padding:1rem">
+                                            <input type="checkbox" {$checked} class="orderCheck" data-id="{$order["id"]}"/>
+                                        </div>
+                                        <div>
+                                            <h4>{$order["name"]}</h4>
+                                            <div>
+                                                <img src="{$order["image"]}" alt="{$order["name"]}" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <b>x{$order["quantity"]}</b>
+                                        </div>
+                                        <div>
+                                            <b class="price">{$newTotal}</b>
+                                        </div>
+                                    </div>
+                                ROW;
+                                $grandTotal += $order["isActive"] ? $newTotal : 0;
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </section>
+            <section id="summary-tab">
+                <h3 style="margin-top:2rem">Summary</h3>
+                <?php
+                $summaryTotal = 0;
+                if (!$orders["status"]) {
+                    echo "Please make sure you have selected a dish for your reservation.";
+                    return false;
+                } else if ($grandTotal <= 0) {
+                    echo "<small style='color:red; font-weight:bold'>Please make sure you have selected a dish for your reservation.</small>";
+                } else {
+                    foreach ($orders["body"] as $index => $order) {
+                        if (!$order["isActive"]) continue;
+                        echo <<<ROW
+                                <div class="summary-row summary-item-row">
+                                    <span class="name">{$order["name"]}</span>
+                                    <span>x{$order["quantity"]}</span>
+                                    <span class="price item-price">{$order["price"]}</span>
+                                </div>
+                            ROW;
+                    }
+                }
+                ?>
+                <hr style="margin-top: auto;">
+                <small style="color:red; font-weight:bold">
+                    Please note that you will need to pay 50% of the grand total.
+                </small>
+                <div class="summary-row">
+                    <div>
+                        <h5>Grand Total:</h5>
+                    </div>
+                    <div style="grid-column-start:2; grid-column-end:-1;">
+                        <h4 class="price">
+                            <?php echo $grandTotal; ?>
+                        </h4>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div>
+                        <h5>To be Payed :</h5>
+                    </div>
+                    <div>
+                        <small style="color:red; font-weight:bold; text-align:center">
+                            (50%)
+                        </small>
+                    </div>
+                    <div>
+                        <h3 class="price">
+                            <?php echo .5 * (int)$grandTotal; ?>
+                        </h3>
+                    </div>
+                </div>
+                <!-- <button type="button" class="btn" style="background-color: #146C94; right:1rem; margin:0 !important;">
+                    Save Selection
+                </button> -->
+                <button class="btn" style="background-color:red; width:100%; margin-top:.5rem !important" id="gotoPaymentBtn">Go to Payment</button>
+            </section>
+        </section>
+    </dialog>
     <main class="container" style="padding:1%">
         <div style="padding:3rem">
             <h1>PAYMENT</h1>
@@ -45,24 +150,27 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
                     </li>
                 </ul>
             </div>
-            <form action="" enctype="multipart/form-data" id="reserveForm">
+            <form action="apis/payment.php" enctype="multipart/form-data" id="reserveForm" method="POST">
+                <button type="button" class="btn" style="background-color: #146C94; right:1rem; margin:0 !important" id="selectedBtn">
+                    View Selected Dishes to be Payed
+                </button>
                 <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                 <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:0.5rem; margin:0.5rem; align-items:center; padding:1rem">
                     <div class="custom-select" style="width:100%">
                         <select id="bank" name="bank">
-                            <option value="0">Select Bank:</option>
-                            <option value="1">Mlhuillier Financial Services Inc.</option>
-                            <option value="2">Palawan Express</option>
-                            <option value="3">Banco De Oro (BDO)/option>
-                            <option value="4">United Coconut Planters Bank (UCPB)</option>
-                            <option value="5">Bank of the Philippines Island (BPI)</option>
-                            <option value="6">Metro Bank</option>
-                            <option value="7">Security Bank (SB)</option>
-                            <option value="8">RD Pawnshop Inc.</option>
-                            <option value="9">Gcash</option>
-                            <option value="10">Jazzpay.</option>
-                            <option value="11">Philippine National Bank</option>
-                            <option value="12">Union Bank</option>
+                            <option>Select Bank:</option>
+                            <option value="Mlhuillier Financial Services Inc.">Mlhuillier Financial Services Inc.</option>
+                            <option value="Palawan Express">Palawan Express</option>
+                            <option value="Banco De Oro (BDO)">Banco De Oro (BDO)</option>
+                            <option value="United Coconut Planters Bank (UCPB)">United Coconut Planters Bank (UCPB)</option>
+                            <option value="Bank of the Philippines Island (BPI)">Bank of the Philippines Island (BPI)</option>
+                            <option value="Metro Bank">Metro Bank</option>
+                            <option value="Security Bank (SB)">Security Bank (SB)</option>
+                            <option value="RD Pawnshop Inc.">RD Pawnshop Inc.</option>
+                            <option value="Gcash">Gcash</option>
+                            <option value="Jazzpay.">Jazzpay.</option>
+                            <option value="Philippine National Bank">Philippine National Bank</option>
+                            <option value="Union Bank">Union Bank</option>
                         </select>
                     </div>
                     <div class="txt_field">
@@ -70,7 +178,7 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="number" placeholder="Amount" id="amount" name="amount">
+                        <input type="number" placeholder="Amount" id="amount" name="amount" step='0.01' readonly value="<?php echo .5 * (int)$grandTotal ?>">
                         <span></span>
                     </div>
                     <div class="txt_field">
@@ -98,6 +206,9 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
 </body>
 <script>
     var x, i, j, l, ll, selElmnt, a, b, c;
+    let menuModal = document.getElementById("menu-items");
+    let closeModal = document.getElementById("close-menu-modal");
+    let selectedBtn = document.getElementById("selectedBtn");
     /* Look for any elements with the class "custom-select": */
     x = document.getElementsByClassName("custom-select");
     l = x.length;
@@ -183,6 +294,140 @@ if (!isset($_SESSION["user"])) header("refresh:0;url=auth/customerlogin.php");
         btn.addEventListener("click", function() {
 
         });
+    }
+
+    let gotoPaymentBtn = document.getElementById("gotoPaymentBtn");
+    gotoPaymentBtn.addEventListener("click", () => {
+        menuModal.close();
+        var newURL = location.href.split("&")[0];
+        window.history.pushState('object', document.title, newURL);
+        location.reload();
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        let field = 'menu';
+        let url = window.location.href;
+        if (url.indexOf('&' + field + '=') != -1) {
+            menuModal.showModal();
+            return true;
+        }
+
+        closeModal.addEventListener("click", () => {
+            menuModal.close();
+        });
+        selectedBtn.addEventListener("click", () => {
+            menuModal.showModal();
+        });
+    })
+
+    let orderCheckBoxes = document.querySelectorAll(".orderCheck");
+    orderCheckBoxes.forEach((element) => {
+        element.addEventListener("click", (e) => {
+            let elem = document.elementFromPoint(e.clientX, e.clientY)
+            let id = elem.getAttribute("data-id");
+            let isActive = elem.checked;
+            console.log(id, isActive);
+            let fd = new FormData();
+            fd.append("data-id", id);
+            fd.append("isActive", isActive);
+            fetch("apis/check.php", {
+                    method: "POST",
+                    body: fd
+                })
+                .then((response) => response.json())
+                .then((response) => {
+                    // updateSummary(JSON.parse(response.data));
+                    var url = window.location.href;
+                    window.location.href += '&menu=1';
+                })
+        })
+    });
+
+    function updateSummary(data) {
+        let items = document.querySelectorAll(".summary-item-row");
+        let preOrderRows = document.querySelectorAll(".pre-ordered-row");
+        let summaryWrapper = document.getElementById("summary-tab");
+
+        // REMOVE ROW ITEMS
+        items.forEach((element) => {
+            element.remove();
+        });
+        summaryWrapper.innerHTML = "";
+
+        // GENERATE ROW ITEMS
+        let newRows = "";
+        let newSummaryBody = `<h3 style="margin-top:2rem">Summary</h3>`;
+        let selectWrapper = document.getElementById("pre-order-wrapper");
+        let grandTotal = 0;
+        let toBePayed = 0;
+        for (item of data) {
+            let newItemTotal = parseInt(item.price) * parseInt(item.quantity);
+            let isActive = item.isActive ? "checked" : "";
+            console.log(isActive)
+            newRows += `<div class="pre-ordered-row">
+                                        <div style="height:100%; display:flex; align-items:center; padding:1rem">
+                                            <input type="checkbox" ${isActive} class="orderCheck" data-id="${item.id}"/>
+                                        </div>
+                                        <div>
+                                            <h4>${item.name}</h4>
+                                            <div>
+                                                <img src="${item.image}" alt="${item.name}" width="100%" height="100%">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <b>x${item.quantity}</b>
+                                        </div>
+                                        <div>
+                                            <b class="price">${newItemTotal}</b>
+                                        </div>
+                                    </div>`;
+            if (!isActive) return false;
+            newSummaryBody +=
+                `
+            <div class="summary-row summary-item-row">
+                <span class="name">${item.name}</span>
+                <span>x${item.quantity}</span>
+                <span class="price item-price">${item.price}</span>
+            </div>
+            `;
+            grandTotal += newItemTotal;
+        }
+        newSummaryBody +=
+            `
+        <hr style="margin-top: auto;">
+            <small style="color:red; font-weight:bold">
+                Please note that you will need to pay 50% of the grand total.
+            </small>
+            <div class="summary-row">
+                <div>
+                    <h5>Grand Total:</h5>
+                </div>
+                <div style="grid-column-start:2; grid-column-end:-1;">
+                <h4 class="price">
+                    ${grandTotal}
+                </h4>
+            </div>
+        </div>
+        <div class="summary-row">
+                <div>
+                    <h5>To be Payed :</h5>
+                </div>
+                <div>
+                    <small style="color:red; font-weight:bold; text-align:center">
+                        (50%)
+                    </small>
+                </div>
+                <div>
+                <h3 class="price">
+                    ${parseInt(grandTotal) * 0.5}
+                </h3>
+            </div>
+        </div>
+        <button class="btn" style="background-color:red; width:100%; margin-top:.5rem !important">Go to Payment</button>
+        `;
+        selectWrapper.innerHTML = newRows;
+        summaryWrapper.innerHTML = newSummaryBody;
     }
 </script>
 

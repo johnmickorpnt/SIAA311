@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2023 at 11:10 AM
+-- Generation Time: Mar 23, 2023 at 01:48 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -88,18 +88,18 @@ CREATE TABLE `dishes` (
 INSERT INTO `dishes` (`id`, `name`, `category`, `price`, `description`, `image`, `created_at`, `updated_at`) VALUES
 (1, 'Lasagna Pastas', 3, 350, 'Your favorite lasagna ingredients, including pasta, sausage, cheese, and marinara NY sauce, are all included in this pasta dish. Lorem Ipsum. Lorem Ipsum Ipsum Omcm.', 'assets/imgs/thump_1670738480.jpg', '2022-12-03 12:54:17', '2022-12-11 14:01:20'),
 (2, 'Ceasar Salad ', 4, 240, 'Crisp romaine lettuce, crunchy croutons, and as much or as little anchovy as you like make up this New York favorite salad.', 'assets/imgs/caesar-salad.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(3, 'PORTERHOUSE/ T-BONE ', 1, 850, 'It offers a delectable combination of rich, delicious New York strip and soft, succulent filet mignon.', 'assets/imgs/porterhouse.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(3, 'Porterhouse/ T-Bone ', 1, 850, 'It offers a delectable combination of rich, delicious New York strip and soft, succulent filet mignon.', 'assets/imgs/porterhouse.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
 (4, 'Baby Back Ribs', 1, 350, 'The loin muscle meets the backbone high on the hog\'s back, where the baby back ribs, also known as pork back ribs, originate.', 'assets/imgs/baby-backribs.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(5, 'BEEF SALPICAO', 1, 360, 'Beef Salpicao Tender rib-eye steak chunks that have been perfectly cooked, seasoned with a delectable seasoning sauce, and then covered in butter.', 'assets/imgs/beef-salpicao.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(6, 'BREAKFAST BURRITO ', 1, 230, 'Breakfast burrito filled with crispy potatoes, softly scrambled eggs, creamy avocado, and melty cheddar cheese.', 'assets/imgs/breakfast-burrito.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(7, 'STRAWBERRY CHEESECAKE ', 3, 180, 'The greatest strawberry topping, created from fresh strawberries and lemon juice, is placed on top of a light and creamy base in this baked strawberry cheesecake.', 'assets/imgs/strawberry-cheesecake.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(8, 'CREAM BRULEE ', 3, 230, 'French delicacy called creme brûlée is made of a base of rich, creamy custard and a coating of firm caramel on top.', 'assets/imgs/cream-brulee.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(9, 'GRILLED TUNA BELLY ', 6, 380, 'NY Style Perfectly cooked over hot coals after being marinated in a sweet and savory sauce.', 'assets/imgs/grilled-tuna.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(10, 'GRILLED SALMON ', 6, 330, 'NY Salmon that have been expertly grilled are attractively seared but remain juicy and soft in the middle.', 'assets/imgs/grilled-salmon.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(11, 'PRAWNS THERMIDOR ', 6, 390, 'In NY A popular meal called \'Prawns Thermidor\' features soft prawn pieces cooked with carrot, celery, button mushrooms, and a creamy mustard sauce.', 'assets/imgs/prawn-thermidor.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(5, 'Beef Salpicao', 1, 360, 'Beef Salpicao Tender rib-eye steak chunks that have been perfectly cooked, seasoned with a delectable seasoning sauce, and then covered in butter.', 'assets/imgs/beef-salpicao.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(6, 'Breakfast Burrito ', 1, 230, 'Breakfast burrito filled with crispy potatoes, softly scrambled eggs, creamy avocado, and melty cheddar cheese.', 'assets/imgs/breakfast-burrito.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(7, 'Strawberry Cheesecake ', 3, 180, 'The greatest strawberry topping, created from fresh strawberries and lemon juice, is placed on top of a light and creamy base in this baked strawberry cheesecake.', 'assets/imgs/strawberry-cheesecake.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(8, 'Cream Brulee ', 3, 230, 'French delicacy called creme brûlée is made of a base of rich, creamy custard and a coating of firm caramel on top.', 'assets/imgs/cream-brulee.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(9, 'Grilled Tuna Belly ', 6, 380, 'NY Style Perfectly cooked over hot coals after being marinated in a sweet and savory sauce.', 'assets/imgs/grilled-tuna.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(10, 'Grilled Salmon ', 6, 330, 'NY Salmon that have been expertly grilled are attractively seared but remain juicy and soft in the middle.', 'assets/imgs/grilled-salmon.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(11, 'Prawns Thermidor ', 6, 390, 'In NY A popular meal called \'Prawns Thermidor\' features soft prawn pieces cooked with carrot, celery, button mushrooms, and a creamy mustard sauce.', 'assets/imgs/prawn-thermidor.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
 (12, 'Pumpkin Soup ', 2, 160, 'it is made with a foundation of savory vegetable broth and sweet cream (Tomato Soup)  and is loaded with a variety of tomatoes, garlic, and NY-originated spices. (Garlic bread)', 'assets/imgs/pumpkin-soup.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(13, 'BAKED MUSSELS ', 2, 270, 'a Tasty New York recipe for baked mussels with oozing cheese and garlic-bechamel sauce', 'assets/imgs/baked-mussel.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
-(14, 'NACHOS SUPREME ', 2, 260, 'A typical appetizer of tortilla chips with melted cheese and sliced chile peppers is called \"Bringing Mexico to NY into the Philippines.\"', 'assets/imgs/nachos-supreme.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(13, 'Baked Mussels ', 2, 270, 'a Tasty New York recipe for baked mussels with oozing cheese and garlic-bechamel sauce', 'assets/imgs/baked-mussel.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
+(14, 'Nachos Supreme ', 2, 260, 'A typical appetizer of tortilla chips with melted cheese and sliced chile peppers is called \"Bringing Mexico to NY into the Philippines.\"', 'assets/imgs/nachos-supreme.jpg', '2022-12-03 12:54:17', '2022-12-03 12:54:17'),
 (15, 'Lasagna Pasta', 3, 233, 'Yes. Very yummy', 'assets/imgs/thump_1678078888.jpeg', '2023-03-06 13:01:28', '2023-03-06 13:01:28');
 
 -- --------------------------------------------------------
@@ -110,15 +110,26 @@ INSERT INTO `dishes` (`id`, `name`, `category`, `price`, `description`, `image`,
 
 CREATE TABLE `payments` (
   `id` int(11) NOT NULL,
-  `account_number` varchar(255) NOT NULL DEFAULT current_timestamp(),
-  `amount` varchar(255) NOT NULL DEFAULT current_timestamp(),
+  `reservationId` int(11) NOT NULL,
+  `account_number` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
   `bank` varchar(255) NOT NULL,
   `branch` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `receipt` varchar(255) NOT NULL,
-  `created_at` date NOT NULL,
-  `updated_at` date NOT NULL
+  `created_at` date NOT NULL DEFAULT current_timestamp(),
+  `updated_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `reservationId`, `account_number`, `amount`, `bank`, `branch`, `date`, `receipt`, `created_at`, `updated_at`) VALUES
+(1, 29, '123124', '200', 'Union Bank', 'Antipolo City', '2023-03-18', 'yes', '2023-03-23', '2023-03-23'),
+(2, 31, '214124512', '200', 'Union Bank', 'Angono Rizal', '2023-03-24', 'yes', '2023-03-23', '2023-03-23'),
+(4, 30, '421412', '244', 'Union Bank', 'Antipolo Rizal', '2023-03-14', 'ddfff', '2023-03-23', '2023-03-23'),
+(5, 31, '09124124124', '270', 'Select Bank:', '2023-03-25', '0000-00-00', 'yes', '2023-03-23', '2023-03-23');
 
 -- --------------------------------------------------------
 
@@ -130,11 +141,20 @@ CREATE TABLE `pre_ordered` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `dishId` int(11) NOT NULL,
-  `reservationId` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
+  `isActive` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pre_ordered`
+--
+
+INSERT INTO `pre_ordered` (`id`, `userId`, `dishId`, `quantity`, `isActive`, `created_at`, `updated_at`) VALUES
+(14, 2, 13, 2, 1, '2023-03-21 20:39:04', '2023-03-21 20:39:04'),
+(15, 2, 14, 1, 0, '2023-03-22 09:38:54', '2023-03-22 09:38:54'),
+(17, 2, 11, 1, 0, '2023-03-22 14:31:17', '2023-03-22 14:31:17');
 
 -- --------------------------------------------------------
 
@@ -159,11 +179,10 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `date`, `startTime`, `endTime`, `user`, `tableId`, `status`, `created_at`, `updated_at`) VALUES
-(24, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 1, '0', '2023-03-06 13:20:01', '2023-03-06 13:20:01'),
-(25, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 2, '0', '2023-03-06 13:20:11', '2023-03-06 13:20:11'),
-(26, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 3, '0', '2023-03-06 13:21:27', '2023-03-06 13:21:27'),
-(27, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 4, '0', '2023-03-06 13:21:45', '2023-03-06 13:21:45'),
-(28, '2023-03-07', '2023-03-07 09:00:00', '2023-03-07 11:00:00', 1, 5, '0', '2023-03-06 14:04:38', '2023-03-06 14:04:38');
+(29, '2023-03-21', '2023-03-21 09:00:00', '2023-03-21 11:00:00', 2, 1, '3', '2023-03-20 11:48:55', '2023-03-23 12:01:25'),
+(30, '2023-03-21', '2023-03-21 09:00:00', '2023-03-21 11:00:00', 3, 2, '0', '2023-03-20 14:08:09', '2023-03-20 14:08:09'),
+(31, '2023-03-22', '2023-03-22 09:00:00', '2023-03-22 11:00:00', 2, 1, '3', '2023-03-21 20:25:10', '2023-03-23 12:01:25'),
+(32, '2023-03-24', '2023-03-24 09:00:00', '2023-03-24 11:00:00', 2, 1, '0', '2023-03-23 19:01:35', '2023-03-23 19:01:35');
 
 -- --------------------------------------------------------
 
@@ -217,7 +236,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `number`, `created_at`, `updated_at`) VALUES
-(1, 'JOhn Micko', 'Rapanot', 'johnmickooo28@gmail.com', '$2y$10$Q1.TkZqz9aXw1sY7uqLEDuIkByNVb1tqbd0pidALsgu2N.13PW02e', '09194282431', '2023-03-03 15:54:20', '2023-03-03 15:54:20');
+(2, 'JOhn Micko', 'Rapanot', 'johnmickooo28@gmail.com', '$2y$10$2WtHGkxs5FaL1pcLCly6D.Wr7zIcodjhlz5E3euYVN7ZLzHmhBs7W', '09194282431', '2023-03-20 11:48:38', '2023-03-20 11:48:38'),
+(3, 'JOhn Micko', 'Rapanot', 'pewdiepewdzpewds@gmail.comgas', '$2y$10$a.u.p7TngnNHGMEn7ww0qu/yRlB7c6UprfKeWMdHi/lqrFpOC0nIq', '09194282431', '2023-03-20 14:07:46', '2023-03-20 14:07:46'),
+(4, 'JOhn Micko', 'Rapanot', 'pewdiepewdzpewds@gmail.comz', '$2y$10$/LD3tkthPIvJvVloEWBbIOcdRqyYJP0GyJRhly1QgV4.rpqbjaEEW', '09194282431', '2023-03-21 20:18:24', '2023-03-21 20:18:24'),
+(5, 'JOhn Micko', 'Rapanot', 'johnmickooo28@gmail.comzzz', '$2y$10$IBRG1jsmrthCOf/i7N/bvuM86cF8jFrvSLUV0NUqfXHY2BcZd6XFe', '09194282431', '2023-03-21 20:19:31', '2023-03-21 20:19:31');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +262,8 @@ ALTER TABLE `dishes`
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reservationId` (`reservationId`);
 
 --
 -- Indexes for table `pre_ordered`
@@ -248,8 +271,7 @@ ALTER TABLE `payments`
 ALTER TABLE `pre_ordered`
   ADD PRIMARY KEY (`id`),
   ADD KEY `dishId` (`dishId`),
-  ADD KEY `userId` (`userId`),
-  ADD KEY `reservationId` (`reservationId`);
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `reservations`
@@ -291,19 +313,19 @@ ALTER TABLE `dishes`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pre_ordered`
 --
 ALTER TABLE `pre_ordered`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tables`
@@ -315,7 +337,7 @@ ALTER TABLE `tables`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -328,12 +350,17 @@ ALTER TABLE `dishes`
   ADD CONSTRAINT `dishes_ibfk_1` FOREIGN KEY (`category`) REFERENCES `dish-category` (`id`);
 
 --
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`reservationId`) REFERENCES `reservations` (`id`);
+
+--
 -- Constraints for table `pre_ordered`
 --
 ALTER TABLE `pre_ordered`
   ADD CONSTRAINT `pre_ordered_ibfk_1` FOREIGN KEY (`dishId`) REFERENCES `dishes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pre_ordered_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `pre_ordered_ibfk_3` FOREIGN KEY (`reservationId`) REFERENCES `reservations` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `pre_ordered_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `reservations`
