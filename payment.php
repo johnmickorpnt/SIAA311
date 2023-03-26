@@ -157,7 +157,7 @@ $orders = json_decode(get_orders(), true);
                 <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                 <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:0.5rem; margin:0.5rem; align-items:center; padding:1rem">
                     <div class="custom-select" style="width:100%">
-                        <select id="bank" name="bank">
+                        <select id="bank" name="bank" required>
                             <option>Select Bank:</option>
                             <option value="Mlhuillier Financial Services Inc.">Mlhuillier Financial Services Inc.</option>
                             <option value="Palawan Express">Palawan Express</option>
@@ -174,25 +174,25 @@ $orders = json_decode(get_orders(), true);
                         </select>
                     </div>
                     <div class="txt_field">
-                        <input type="text" placeholder="Account Number" id="account_number" name="account_number" min="10" max="10">
+                        <input type="text" placeholder="Account Number" id="account_number" name="account_number" min="10" max="10" required>
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="number" placeholder="Amount" id="amount" name="amount" step='0.01' readonly value="<?php echo .5 * (int)$grandTotal ?>">
+                        <input type="number" placeholder="Amount" id="amount" name="amount" step='0.01' readonly value="<?php echo .5 * (int)$grandTotal ?>" required>
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="date" id="date" name="date" class="form-input" id="date" name="date" min="<?= date('Y-m-d', strtotime("+1 day")); ?>">
+                        <input type="date" id="date" name="date" class="form-input" id="date" name="date" min="<?= date('Y-m-d', strtotime("+1 day")); ?>" required>
                         <span></span>
                     </div>
                     <div class="txt_field">
-                        <input type="text" placeholder="Deposited Branch" id="deposited_branch" name="deposited_branch">
+                        <input type="text" placeholder="Deposited Branch" id="deposited_branch" name="deposited_branch" required>
                         <span></span>
                     </div>
-                    <div class="txt_field">
+                    <!-- <div class="txt_field">
                         <input type="file" name="screenshot" id="screenshot">
                         <span></span>
-                    </div>
+                    </div> -->
                 </div>
                 <button type="button" onclick="document.getElementById('reserveForm').reset()" style="width:100%;color:black; border-radius: 15px; border:0;padding:1rem" id="clearBtn">Clear</button>
                 <input type="submit" style="width:100%">
