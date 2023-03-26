@@ -44,7 +44,6 @@ $dishes = get_all_dishes(1, 25);
                 <th>ID</th>
                 <th>User ID</th>
                 <th>Dish ID</th>
-                <th>Reservation</th>
                 <th>Quantity</th>
                 <th>Created At</th>
                 <th>Updated At</th>
@@ -68,9 +67,6 @@ $dishes = get_all_dishes(1, 25);
                             </td>
                             <td>
                                 {$val["dishId"]}
-                            </td>
-                            <td>
-                                {$val["reservationId"]}
                             </td>
                             <td>
                                 {$val["quantity"]}
@@ -149,20 +145,7 @@ $dishes = get_all_dishes(1, 25);
                         ?>
                     </select>
                 </div>
-                <div class="select-form">
-                    <label>Reservation ID: </label>
-                    <select name="reservationId" id="reservationId" required>
-                        <?php
-                        foreach($reservations as $key => $val){
-                            echo <<<CONTENT
-                                <option value="{$val['id']}">
-                                    {$val['id']}
-                                </option>
-                            CONTENT;
-                        }
-                        ?>
-                    </select>
-                </div>
+
             </div>
             <div class="txt_field">
                 <input type="text" name="quantity" id="quantity" required>

@@ -43,18 +43,36 @@ $users = get_all_users(1, 25);
             </button>
         </div> -->
         <div style="display: flex; gap: 0.25rem">
-            <button class="btn btn-add" id="btn-add">
+            <button class="btn btn-add" id="btn-add" type="button">
                 <i class="fa-solid fa-plus"></i>
                 Add New Reservation
             </button>
-            <button class="btn btn-filter">
+            <button class="btn btn-filter" id="viewAllBtn" style="margin-left:auto">
                 <i class="fa-solid fa-eye"></i>
                 View All Reservations
             </button>
-            <button class="btn btn-filter">
+            <button class="btn btn-filter" id="viewPendingBtn">
                 <i class="fa-sharp fa-solid fa-hourglass-start"></i>
                 View Pending Reservations
             </button>
+            <button class="btn btn-filter" id="viewCancelledBtn">
+                <i class="fa-sharp fa-solid fa-hourglass-start"></i>
+                View Cancelled Reservations
+            </button>
+            <!-- <select name="filter-status" id="filter-status">
+                <option value="0">
+                    Pending
+                </option>
+                <option value="1">
+                    Approved
+                </option>
+                <option value="2">
+                    Success
+                </option>
+                <option value="3">
+                    Cancelled
+                </option>
+            </select> -->
         </div>
         <table style="width:100%;">
             <thead>
@@ -319,6 +337,15 @@ $users = get_all_users(1, 25);
                         });
                 });
             });
+
+            let viewPendingBtn = document.getElementById("viewPendingBtn");
+            let viewAllBtn = document.getElementById("viewAllBtn");
+            let viewCancelledBtn = document.getElementById("viewCancelledBtn");
+
+            var url = window.location.href;
+            viewPendingBtn.addEventListener("click", () => window.location.href += '?status=0');
+            viewCancelledBtn.addEventListener("click", () => window.location.href += '?status=3');
+            viewAllBtn.addEventListener("click", () => window.location.href = url.substring(0, url.indexOf("?")));
         });
     </script>
 </body>

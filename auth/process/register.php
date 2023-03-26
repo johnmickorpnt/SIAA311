@@ -87,11 +87,11 @@ if (isset($_POST['email'])) {
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";
 			$mail->SMTPAuth = true;
-			$mail->Username = 'jacobmartindummy@gmail.com';
-			$mail->Password = 'idcrrkgigtumrgut';
+			$mail->Username = 'hh.events.bistro.antipolo@gmail.com';
+			$mail->Password = 'qcqdnvelnzmadchi';
 			$mail->Port = 587;
 
-			$mail->setFrom('hubzbistro.dummy@gmail.com');
+			$mail->setFrom('hh.events.bistro.antipolo@gmail.com');
 			$mail->addAddress($email);
 			$mail->isHTML(true);
 			$mail->Subject = "Hubz Bistro Account Creation";

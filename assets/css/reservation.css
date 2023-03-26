@@ -45,7 +45,7 @@ body {
 
 .tbl-wrapper {
     display: flex;
-    justify-content: right;
+    justify-content: center;
     position: relative;
 }
 

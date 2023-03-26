@@ -22,15 +22,10 @@ if (isset($_POST["id"])) {
 
     $preOrderObject->fetch($_POST["id"]);
     $preOrderObject->setUserId(date(isset($_POST["userId"]) ? $_POST["userId"] : $preOrderObject->getUserId()));
-    
     $preOrderObject->setDishId(isset($_POST["dishId"]) ? $_POST["dishId"] : $preOrderObject->getDishId());
-    $preOrderObject->setReservationId(isset($_POST["reservationId"]) ?  $_POST["reservationId"] : $preOrderObject->getReservationId());
     $preOrderObject->setUserId(isset($_POST["userId"]) ? $_POST["userId"] : $preOrderObject->getUserId());
     $preOrderObject->setQuantity(isset($_POST["quantiy"]) ? $_POST["quantiy"] : $preOrderObject->getQuantity());
-    if (!$preOrderObject->verifyTables()) {
-        echo json_encode(["status" => false, "errors" => "ID cannot be found on connected table/s."]);
-        return false;
-    }
+    
 
     $result = $preOrderObject->save($db);
     if (!$result) {

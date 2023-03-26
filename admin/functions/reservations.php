@@ -19,7 +19,7 @@ function get_with_filter($values)
 
     $data = isset($values["status"]) ?
         $reservations->fetch_by_status($values["status"]) : $reservations->fetchAll();
-
+    
     return $data;
 
     // return $values;

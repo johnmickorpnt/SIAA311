@@ -7,7 +7,6 @@ class PreOrder
     private $id;
     private $userId;
     private $dishId;
-    private $reservationId;
     private $quantity;
     private $created_at;
     private $updated_at;
@@ -29,7 +28,6 @@ class PreOrder
                     "id" => $row->id,
                     "userId" => $row->userId,
                     "dishId" => $row->dishId,
-                    "reservationId" => $row->reservationId,
                     "quantity" => $row->quantity,
                     "created_at" => $row->created_at,
                     "updated_at" => $row->updated_at
@@ -59,7 +57,6 @@ class PreOrder
                 $this->setId($row->id);
                 $this->setUserId($row->userId);
                 $this->setDishId($row->dishId);
-                $this->setReservationId($row->reservationId);
                 $this->setQuantity($row->quantity);
                 $this->setCreated_at($row->created_at);
                 $this->setUpdated_at($row->updated_at);
@@ -68,27 +65,27 @@ class PreOrder
         } else return false;
     }
 
-    function verifyTables()
-    {
-        $query = "SELECT * FROM reservations WHERE id = {$this->getReservationId()}";
-        $stmt = $this->conn->prepare($query);
-        $results = $stmt->execute();
+    // function verifyTables()
+    // {
+    //     $query = "SELECT * FROM reservations WHERE id = {$this->getReservationId()}";
+    //     $stmt = $this->conn->prepare($query);
+    //     $results = $stmt->execute();
 
-        if ($results && $stmt->rowCount() <= 0) return false;
+    //     if ($results && $stmt->rowCount() <= 0) return false;
 
-        $query = "SELECT * FROM users WHERE id = {$this->getUserId()}";
-        $stmt = $this->conn->prepare($query);
-        $results = $stmt->execute();
+    //     $query = "SELECT * FROM users WHERE id = {$this->getUserId()}";
+    //     $stmt = $this->conn->prepare($query);
+    //     $results = $stmt->execute();
 
-        if ($results && $stmt->rowCount() <= 0) return false;
+    //     if ($results && $stmt->rowCount() <= 0) return false;
 
-        $query = "SELECT * FROM dishes WHERE id = {$this->getDishId()}";
-        $stmt = $this->conn->prepare($query);
-        $results = $stmt->execute();
+    //     $query = "SELECT * FROM dishes WHERE id = {$this->getDishId()}";
+    //     $stmt = $this->conn->prepare($query);
+    //     $results = $stmt->execute();
 
-        if ($results && $stmt->rowCount() <= 0) return false;
-        else return true;
-    }
+    //     if ($results && $stmt->rowCount() <= 0) return false;
+    //     else return true;
+    // }
 
     function save()
     {
@@ -96,12 +93,10 @@ class PreOrder
         $query = $this->getId() !== null ? "UPDATE {$this->table} SET 
         `userId` = '{$this->getUserId()}', 
         `dishId` = '{$this->getDishId()}', 
-        `reservationId` = '{$this->getReservationId()}', 
         `quantity` = '{$this->getQuantity()}', 
         `updated_at` = '{$this->getUpdated_at()}'
-        WHERE id = {$this->getId()}" : "INSERT INTO {$this->table} (id, userId, dishId, reservationId, quantity, created_at, updated_at) 
-        VALUES(NULL, '{$this->getUserId()}', '{$this->getDishId()}', 
-        '{$this->getReservationId()}', '{$this->getQuantity()}', NOW(), NOW());";
+        WHERE id = {$this->getId()}" : "INSERT INTO {$this->table} (id, userId, dishId, quantity, created_at, updated_at) 
+        VALUES(NULL, '{$this->getUserId()}', '{$this->getDishId()}', '{$this->getQuantity()}', NOW(), NOW());";
         $stmt = $this->conn->prepare($query);
         $results = $stmt->execute();
         return $results;
@@ -170,26 +165,6 @@ class PreOrder
     public function setDishId($dishId)
     {
         $this->dishId = $dishId;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of reservationId
-     */
-    public function getReservationId()
-    {
-        return $this->reservationId;
-    }
-
-    /**
-     * Set the value of reservationId
-     *
-     * @return  self
-     */
-    public function setReservationId($reservationId)
-    {
-        $this->reservationId = $reservationId;
 
         return $this;
     }

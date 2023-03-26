@@ -10,7 +10,6 @@ date_default_timezone_set("Asia/Manila");
 $id = $_POST["id"];
 $userId = $_POST["userId"];
 $dishId = $_POST["dishId"];
-$reservationId = $_POST["reservationId"];
 $quantity = $_POST["quantity"];
 
 $db = new Db();
@@ -20,7 +19,6 @@ $preOrderObj = new PreOrder($db);
 
 $preOrderObj->setUserId($userId);
 $preOrderObj->setDishId($dishId);
-$preOrderObj->setReservationId($reservationId);
 $preOrderObj->setQuantity($quantity);
 
 if (empty($userId)) {
@@ -33,18 +31,14 @@ if (empty($dishId)) {
     array_push($errors, "Dish ID is required.");
 } else $valid[2] = true;
 
-if (empty($reservationId)) {
-    $valid[3] = false;
-    array_push($errors, "Reservation ID is required.");
-} else $valid[3] = true;
 
 if (empty($quantity)) {
-    $valid[4] = false;
+    $valid[3] = false;
     array_push($errors, "Quantity is required.");
 } else if (strlen($quantity) <= 0) {
-    $valid[4] = false;
+    $valid[3] = false;
     array_push($errors, "Invalid quantity number, it must be at least 1.");
-} else $valid[4] = true;
+} else $valid[3] = true;
 
 if (in_array(false, $valid)) {
     $response["status"] = false;
